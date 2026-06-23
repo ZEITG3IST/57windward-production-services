@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Production Services — 1217 Second Street</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4ED;
+  --bg-soft:#EFEBE0;
+  --bg-warm:#EAE5D7;
+  --ink:#1A1A1A;
+  --ink-soft:#2B2B29;
+  --muted:#6F6A60;
+  --faint:#A19B91;
+  --line:#D5CFC2;
+  --hairline:rgba(26,26,26,.10);
+  --rule:rgba(26,26,26,.07);
+  --max:1280px;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--sans);cursor:pointer}
+
+/* ── NAV (will eventually live INSIDE Scott's 57windward.com header — keep it light) ── */
+nav.top{position:sticky;top:0;z-index:80;background:rgba(247,244,237,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline)}
+nav.top .wrap{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;gap:36px}
+nav.top .brand{font:600 11px/1.4 var(--sans);letter-spacing:3.5px;text-transform:uppercase;color:var(--ink)}
+nav.top .brand small{display:block;font:400 9px/1.4 var(--sans);letter-spacing:2.2px;color:var(--muted);margin-top:5px;text-transform:uppercase}
+nav.top ul{list-style:none;display:flex;gap:28px;font:500 11px/1 var(--sans);letter-spacing:2.5px;text-transform:uppercase}
+nav.top ul a{color:var(--ink-soft);transition:color .2s}
+nav.top ul a:hover{color:var(--ink)}
+nav.top .cta{font:500 11px/1 var(--sans);letter-spacing:2.5px;text-transform:uppercase;border:1px solid var(--ink);padding:12px 18px;border-radius:2px;transition:background .2s,color .2s;display:inline-flex;align-items:center;gap:8px}
+nav.top .cta:hover{background:var(--ink);color:var(--bg)}
+nav.top .cta .arr{font-weight:300}
+
+/* ── HERO with text overlay ── */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:#0d0d0c}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.15) 50%,rgba(0,0,0,.65) 100%);pointer-events:none}
+.hero .content{position:relative;z-index:2;height:100%;max-width:var(--max);margin:0 auto;padding:0 7vw 12vh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff}
+.hero .eyebrow{font:500 10px/1 var(--sans);letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:26px}
+.hero h1{font:300 clamp(40px,5.6vw,82px)/1.05 var(--sans);letter-spacing:-2px;color:#fff;max-width:980px;margin-bottom:34px}
+.hero h1 b{font-weight:500}
+.hero .actions{display:flex;align-items:center;gap:32px}
+.hero .actions a.primary{font:500 11px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.65);padding-bottom:8px;transition:color .2s,border-color .2s}
+.hero .actions a.primary:hover{border-color:#fff}
+.hero .actions a.primary .arr{font-weight:200;margin-left:6px}
+.hero .actions a.ghost{font:500 11px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.hero .scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font:500 9px/1 var(--sans);letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.55);z-index:3}
+.hero .scroll::after{content:'';display:block;width:1px;height:36px;background:rgba(255,255,255,.4);margin:14px auto 0}
+
+/* ── STAT STRIP (divider between hero and What It Becomes) ── */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg)}
+.stats .wrap{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:50px 36px;border-right:1px solid var(--hairline);display:flex;flex-direction:column;gap:14px}
+.stat:last-child{border-right:none}
+.stat .n{font:300 clamp(38px,4.5vw,62px)/.95 var(--sans);letter-spacing:-2px;color:var(--ink)}
+.stat .l{font:500 10px/1.5 var(--sans);letter-spacing:2.6px;text-transform:uppercase;color:var(--muted)}
+
+/* ── SECTION SCAFFOLD ── */
+section.block{padding:130px 7vw}
+section.block .wrap{max-width:var(--max);margin:0 auto}
+.eyebrow{font:500 10px/1 var(--sans);letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.h-rule{height:1px;background:var(--hairline);max-width:var(--max);margin:0 auto}
+
+/* ── WHAT IT BECOMES (background image + gradient fade + translucent cards) ── */
+.becomes{position:relative;padding:160px 7vw 200px;background-color:var(--ink);background-image:url("bg_what_it_becomes.jpg");background-size:cover;background-position:center;color:#fff;overflow:hidden}
+.becomes::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,.55) 0%,rgba(26,26,26,.32) 28%,rgba(26,26,26,.45) 60%,rgba(26,26,26,.7) 80%,var(--bg-soft) 100%);pointer-events:none;z-index:1}
+.becomes .wrap{position:relative;z-index:2;max-width:var(--max);margin:0 auto}
+.becomes .eyebrow{color:rgba(255,255,255,.72);margin-bottom:20px}
+.becomes .head{margin-bottom:72px;max-width:780px}
+.becomes h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:#fff;margin-bottom:22px}
+.becomes h2 b{font-weight:500}
+.becomes .lede{font:300 17px/1.7 var(--sans);color:rgba(255,255,255,.9);max-width:580px;letter-spacing:.05px}
+.becomes .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.becomes .card{display:flex;flex-direction:column;gap:12px;padding:28px 26px;background:rgba(26,26,26,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.16);border-radius:2px}
+.becomes .card .n{font:300 13px/1 var(--sans);letter-spacing:3px;color:rgba(255,255,255,.7)}
+.becomes .card h3{font:500 22px/1.25 var(--sans);letter-spacing:-.4px;color:#fff}
+.becomes .card p{font:300 14.5px/1.65 var(--sans);color:rgba(255,255,255,.92);letter-spacing:.05px}
+
+/* ── TAKE THE LIFT (tabbed floors) ── */
+.lift{background:var(--bg-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.lift .head{max-width:var(--max);margin:0 auto;padding:140px 7vw 50px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.lift .head .eyebrow{margin-bottom:18px}
+.lift .head h2{font:300 clamp(40px,5.2vw,80px)/1 var(--sans);letter-spacing:-2.4px;color:var(--ink)}
+.lift .head h2 b{font-weight:500}
+.lift .head p{font:300 16px/1.7 var(--sans);color:var(--muted);max-width:420px}
+.lift .selectlabel{max-width:var(--max);margin:0 auto;padding:30px 7vw 14px;font:500 10px/1 var(--sans);letter-spacing:4px;text-transform:uppercase;color:var(--muted)}
+/* outlined buttons that fill with ink when active */
+.tabs{max-width:var(--max);margin:0 auto;padding:0 7vw;display:flex;gap:12px;flex-wrap:wrap}
+.tabs button{flex:0 0 auto;background:transparent;border:1.5px solid var(--ink);padding:16px 26px;font:500 11px/1 var(--sans);letter-spacing:2.5px;text-transform:uppercase;color:var(--ink);border-radius:2px;cursor:pointer;transition:background .2s,color .2s,border-color .2s;display:flex;align-items:baseline;gap:14px;margin:0}
+.tabs button .n{font-weight:300;color:var(--ink);opacity:.55}
+.tabs button:hover{background:rgba(26,26,26,.07)}
+.tabs button.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button.active .n{color:var(--bg);opacity:.7}
+/* full-bleed floor image with overlaid number + card */
+.panels{max-width:var(--max);margin:0 auto;padding:40px 7vw 140px}
+.panel{display:none;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:2px;background:#0d0d0c}
+.panel.active{display:block}
+.panel .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.panel::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.78) 100%);pointer-events:none;z-index:1}
+.panel .info{position:absolute;bottom:40px;left:48px;right:48px;max-width:760px;color:#fff;z-index:2}
+.panel .info .sub{font:500 10px/1.4 var(--sans);letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:10px}
+.panel .info h3{font:300 clamp(28px,2.6vw,40px)/1.1 var(--sans);letter-spacing:-1px;color:#fff;margin-bottom:22px}
+.panel .info h3 b{font-weight:500}
+.panel .info .stats{display:flex;flex-wrap:wrap;gap:36px;padding:16px 20px;border:1px solid rgba(255,255,255,.45);border-radius:2px;background:transparent;margin-bottom:18px}
+.panel .info .stats .s{display:flex;flex-direction:column;gap:4px}
+.panel .info .stats .v{font:300 22px/1 var(--sans);letter-spacing:-.4px;color:#fff}
+.panel .info .stats .k{font:500 9px/1.3 var(--sans);letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.panel .info ul{list-style:none;margin-bottom:22px;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px}
+.panel .info li{font:300 13.5px/1.55 var(--sans);color:rgba(255,255,255,.92);display:flex;align-items:baseline;gap:10px;letter-spacing:.05px}
+.panel .info li::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.85);flex:0 0 4px;transform:translateY(7px)}
+.panel .info .reserve{font:500 11px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:5px;display:inline-block;transition:border-color .2s}
+.panel .info .reserve:hover{border-bottom-color:#fff}
+.panel .info .reserve .arr{font-weight:200;margin-left:6px}
+
+/* ── ADDRESS (with Zoning text box + promenade video on right) ── */
+.address{background:var(--bg);padding:140px 7vw}
+.address .wrap{max-width:var(--max);margin:0 auto}
+.address .head{margin-bottom:56px;max-width:880px}
+.address h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:var(--ink)}
+.address h2 b{font-weight:500}
+.address .grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:start}
+.address .copy p{font:300 16px/1.75 var(--sans);color:var(--ink-soft);margin-bottom:18px;letter-spacing:.05px}
+.address .copy .addr-stats{margin-top:24px;display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--hairline)}
+.address .copy .addr-stats .s{padding:14px 0;border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;gap:18px;font:400 13.5px/1.5 var(--sans);color:var(--ink-soft);align-items:baseline}
+.address .copy .addr-stats .s strong{font-weight:500;color:var(--ink);letter-spacing:-.1px}
+.address .copy .zoning-box{margin-top:38px;padding:32px 34px;background:var(--bg-warm);border:1px solid var(--hairline);border-radius:2px}
+.address .copy .zoning-box .z-eyebrow{font:500 10px/1 var(--sans);letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.address .copy .zoning-box h3{font:300 clamp(24px,2.4vw,32px)/1.1 var(--sans);letter-spacing:-.7px;color:var(--ink);margin-bottom:18px}
+.address .copy .zoning-box h3 b{font-weight:500}
+.address .copy .zoning-box p{font:300 15px/1.7 var(--sans);color:var(--ink-soft);margin-bottom:16px;letter-spacing:.05px}
+.address .copy .zoning-box .deck-link{font:500 10.5px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:5px;display:inline-block;margin-top:6px}
+.address .copy .zoning-box .deck-link .arr{font-weight:200;margin-left:6px}
+.address .vid{position:sticky;top:80px;aspect-ratio:9/14;background:#000;overflow:hidden;border-radius:2px}
+.address .vid video{width:100%;height:100%;object-fit:cover}
+
+/* ── CAPABILITIES (3-video triangle) ── */
+.capabilities{background:var(--bg);padding:0}
+.capabilities .wrap{max-width:var(--max);margin:0 auto;padding:140px 7vw}
+.capabilities .head{margin-bottom:64px;display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:end}
+.capabilities .head h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:var(--ink);max-width:580px}
+.capabilities .head h2 b{font-weight:500}
+.capabilities .head p{font:300 16px/1.7 var(--sans);color:var(--muted);max-width:480px}
+.capabilities .triangle{display:flex;flex-direction:column;align-items:center;gap:22px;max-width:1080px;margin:0 auto}
+.capabilities .triangle .tile{position:relative;overflow:hidden;background:#000;border-radius:2px}
+.capabilities .triangle .top{width:55%;aspect-ratio:16/10}
+.capabilities .triangle .row{display:flex;gap:22px;width:100%}
+.capabilities .triangle .row .tile{flex:1;aspect-ratio:16/10}
+.capabilities .triangle video,.capabilities .triangle img{width:100%;height:100%;object-fit:cover}
+.capabilities .triangle .tile::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.72) 100%);pointer-events:none;z-index:1}
+.capabilities .triangle .label{position:absolute;bottom:20px;left:24px;font:500 11px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;color:#fff;z-index:2}
+
+/* ── INFRASTRUCTURE ── */
+.infra{background:var(--bg-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.infra .wrap{max-width:var(--max);margin:0 auto;padding:140px 7vw}
+.infra .head{margin-bottom:64px;display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:end}
+.infra .head h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:var(--ink);max-width:580px}
+.infra .head h2 b{font-weight:500}
+.infra .head p{font:300 16px/1.7 var(--sans);color:var(--muted);max-width:440px}
+.infra .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.infra .item{background:var(--bg-soft);padding:38px 32px;display:flex;flex-direction:column;gap:14px}
+.infra .item .n{font:300 13px/1 var(--sans);letter-spacing:3px;color:var(--faint)}
+.infra .item h3{font:500 17px/1.3 var(--sans);letter-spacing:-.2px;color:var(--ink)}
+.infra .item p{font:300 14px/1.65 var(--sans);color:var(--ink-soft);letter-spacing:.05px}
+
+/* ── WALK THROUGH IT (gallery) ── */
+.walk{background:var(--bg);padding:140px 7vw}
+.walk .wrap{max-width:1480px;margin:0 auto}
+.walk .head{margin-bottom:60px;max-width:680px}
+.walk h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:var(--ink)}
+.walk h2 b{font-weight:500}
+.walk .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:200px;gap:14px}
+.walk .bento .cell{overflow:hidden;background:#0d0d0c}
+.walk .bento .cell img{width:100%;height:100%;object-fit:cover}
+.walk .bento .cell.a{grid-column:span 4;grid-row:span 2}
+.walk .bento .cell.b{grid-column:span 2;grid-row:span 1}
+.walk .bento .cell.c{grid-column:span 2;grid-row:span 1}
+.walk .bento .cell.d{grid-column:span 3;grid-row:span 1}
+.walk .bento .cell.e{grid-column:span 3;grid-row:span 1}
+.walk .bento .cell.f{grid-column:span 2;grid-row:span 1}
+.walk .bento .cell.g{grid-column:span 4;grid-row:span 1}
+
+/* ── FAQ (GOOD TO KNOW) ── */
+.faq{background:var(--bg-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.faq .wrap{max-width:920px;margin:0 auto;padding:140px 7vw}
+.faq h2{font:300 clamp(38px,4.4vw,66px)/1.04 var(--sans);letter-spacing:-2px;color:var(--ink);margin-bottom:52px;max-width:580px}
+.faq h2 b{font-weight:500}
+details{border-bottom:1px solid var(--hairline);padding:24px 0}
+details:first-of-type{border-top:1px solid var(--hairline)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:32px;font:500 17px/1.4 var(--sans);color:var(--ink);letter-spacing:-.05px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';font:200 30px/1 var(--sans);color:var(--muted);transition:transform .25s ease, color .2s}
+details[open] summary::after{transform:rotate(45deg);color:var(--ink)}
+details[open] summary{color:var(--ink)}
+details .a{font:300 16px/1.75 var(--sans);color:var(--ink-soft);margin-top:16px;max-width:780px;letter-spacing:.05px}
+
+/* ── LOCK IN PRODUCTION (inquiry form) ── */
+.inquiry{background:var(--bg-warm);padding:140px 7vw}
+.inquiry .wrap{max-width:980px;margin:0 auto}
+.inquiry .head{margin-bottom:64px}
+.inquiry .head .eyebrow{margin-bottom:18px}
+.inquiry .head h2{font:300 clamp(40px,4.6vw,68px)/1.05 var(--sans);letter-spacing:-2px;color:var(--ink);margin-bottom:24px}
+.inquiry .head h2 b{font-weight:500}
+.inquiry .head .lede{font:300 17px/1.75 var(--sans);color:var(--ink-soft);max-width:580px;margin-bottom:24px;letter-spacing:.05px}
+.inquiry .head .contact{display:flex;flex-wrap:wrap;gap:24px 56px;padding-top:24px;border-top:1px solid var(--hairline)}
+.inquiry .head .contact div{display:flex;flex-direction:column;gap:6px}
+.inquiry .head .contact .k{font:500 9.5px/1 var(--sans);letter-spacing:2.4px;text-transform:uppercase;color:var(--muted)}
+.inquiry .head .contact .v{font:400 14px/1.4 var(--sans);color:var(--ink-soft);letter-spacing:.05px}
+.inquiry form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.inquiry form .full{grid-column:1/-1}
+.inquiry label{display:block;font:500 9.5px/1 var(--sans);letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.inquiry input,.inquiry select,.inquiry textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:13px 15px;font:400 15px/1.4 var(--sans);color:var(--ink);outline:none;transition:border-color .2s,background .2s;font-family:var(--sans)}
+.inquiry input::placeholder,.inquiry textarea::placeholder{color:var(--faint)}
+.inquiry input:hover,.inquiry select:hover,.inquiry textarea:hover{border-color:var(--muted)}
+.inquiry input:focus,.inquiry select:focus,.inquiry textarea:focus{border-color:var(--ink);background:#fff}
+.inquiry textarea{resize:vertical;min-height:140px;padding:14px 15px}
+.inquiry select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-soft) 50%),linear-gradient(135deg,var(--ink-soft) 50%,transparent 50%);background-position:calc(100% - 18px) 18px,calc(100% - 13px) 18px;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px;cursor:pointer}
+.inquiry input[type="date"]{cursor:pointer}
+.inquiry button{margin-top:18px;background:var(--ink);color:var(--bg);border:1px solid var(--ink);padding:18px 36px;font:500 11px/1 var(--sans);letter-spacing:3px;text-transform:uppercase;border-radius:2px;transition:background .2s;width:100%;justify-content:center;grid-column:1/-1;display:inline-flex;align-items:center;gap:10px}
+.inquiry button .arr{font-weight:200}
+.inquiry button:hover{background:#000}
+.inquiry .disclaim{margin-top:18px;font:300 12px/1.6 var(--sans);color:var(--muted);grid-column:1/-1;letter-spacing:.05px}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(247,244,237,.85);padding:80px 7vw 40px}
+footer .wrap{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;padding-bottom:48px;border-bottom:1px solid rgba(247,244,237,.12)}
+footer .col h4{font:500 10px/1.4 var(--sans);letter-spacing:2.5px;text-transform:uppercase;color:rgba(247,244,237,.55);margin-bottom:20px}
+footer .col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+footer .col li,footer .col p{font:300 14px/1.5 var(--sans);color:rgba(247,244,237,.85);letter-spacing:.05px}
+footer .col a{transition:color .2s}
+footer .col a:hover{color:#fff}
+footer .lead{max-width:340px}
+footer .lead .brand{font:600 12px/1.4 var(--sans);letter-spacing:3px;text-transform:uppercase;color:#fff;margin-bottom:18px}
+footer .lead .brand small{display:block;font:400 10px/1.6 var(--sans);letter-spacing:2px;color:rgba(247,244,237,.55);margin-top:6px}
+footer .lead p{font:300 13.5px/1.65 var(--sans);color:rgba(247,244,237,.75);margin-top:8px}
+footer .sister{margin-top:18px;font:500 11px/1 var(--sans);letter-spacing:2.5px;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(247,244,237,.4);padding-bottom:6px;display:inline-block}
+footer .sister .arr{font-weight:200;margin-left:6px}
+footer .legal{max-width:var(--max);margin:0 auto;padding-top:28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;font:400 11px/1.6 var(--sans);color:rgba(247,244,237,.45);letter-spacing:.05px}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1000px){
+  .becomes{background-attachment:scroll;padding:100px 7vw 140px}
+  .becomes .grid{grid-template-columns:1fr;gap:18px}
+  .lift .head{grid-template-columns:1fr;gap:24px}
+  .panel{aspect-ratio:3/4}
+  .panel .big-num{top:18px;left:24px;font-size:64px}
+  .panel .card{left:16px;right:16px;bottom:16px;max-width:none;padding:22px 22px}
+  .panel .card h3{font-size:22px;margin-bottom:14px}
+  .panel .card .stats{gap:12px;padding:12px 0;margin-bottom:14px}
+  .panel .card .stats .v{font-size:18px}
+  .panel .card li{font-size:12.5px;padding:6px 0}
+  .tabs{padding:0 7vw 0;gap:8px}
+  .tabs button{padding:13px 18px;font-size:10px;letter-spacing:2px;gap:10px}
+  .address .grid{grid-template-columns:1fr;gap:40px}
+  .zoning .wrap{grid-template-columns:1fr;gap:32px}
+  .infra .head{grid-template-columns:1fr;gap:24px}
+  .infra .grid{grid-template-columns:1fr}
+  .walk .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .walk .bento .cell.a,.walk .bento .cell.b,.walk .bento .cell.c,.walk .bento .cell.d,.walk .bento .cell.e,.walk .bento .cell.f,.walk .bento .cell.g{grid-column:span 2;grid-row:span 1}
+  .inquiry form{grid-template-columns:1fr}
+  footer .wrap{grid-template-columns:1fr 1fr;gap:40px}
+  footer .lead{grid-column:1/-1}
+  nav.top ul{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV (this page is iframed into Scott's 57windward.com, his existing header wraps around it — keeping this internal nav off by default) ─── -->
+<style>nav.top{display:none}</style>
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">
+      1217 Production Services
+      <small>From 1217 Second Street &nbsp;·&nbsp; 57 Windward</small>
+    </div>
+    <ul>
+      <li><a href="#becomes">Services</a></li>
+      <li><a href="#floors">Floors</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="cta" href="#inquiry">Lock in Production <span class="arr">→</span></a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <video src="hero.mp4" poster="hero_poster.jpg" autoplay muted loop playsinline></video>
+  <div class="content">
+    <div class="eyebrow">Santa Monica &nbsp;·&nbsp; BC Promenade District</div>
+    <h1>34,000<b>sq/ft</b> of activation infrastructure,<br>one block from the sand.</h1>
+    <div class="actions">
+      <a class="primary" href="#inquiry">Lock in Production <span class="arr">→</span></a>
+      <a class="ghost" href="#floors">Tour the Floors</a>
+    </div>
+  </div>
+  <div class="scroll">Scroll</div>
+</header>
+
+<!-- ─── STAT STRIP (divider) ─── -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="n">34,000 SF</div><div class="l">Total Floor Area</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Programmable Floors</div></div>
+    <div class="stat"><div class="n">16.5 ft</div><div class="l">Ceiling Heights</div></div>
+    <div class="stat"><div class="n">20</div><div class="l">On-Site Parking Spots</div></div>
+  </div>
+</section>
+
+<!-- ─── WHAT IT BECOMES ─── -->
+<section class="becomes" id="becomes">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">What it becomes</div>
+      <h2>A single address, <b>sized for every kind of production.</b></h2>
+      <div class="lede">Located conveniently in Santa Monica, our 57 Windward property also includes Production Infrastructure for any brand activation in our network, located at 1217 2nd St., just a block from the Fairmont Miramar hotel.</div>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="n">01</div>
+        <h3>Brand Activations</h3>
+        <p>Promenade-facing glass walls and programmable lighting keyed to a brand palette turn the ground floor into a flagship the corridor can't walk past. Add projection, LED, and stage dressing without touching the architecture.</p>
+      </div>
+
+      <div class="card">
+        <div class="n">02</div>
+        <h3>Launches &amp; Premieres</h3>
+        <p>Drop-down cinema screen, raised VIP/DJ platform, Bulthaup B3 kitchen, and a theater lighting system built in. The room arrives configured — the production team arrives to host.</p>
+      </div>
+
+      <div class="card">
+        <div class="n">03</div>
+        <h3>Film &amp; Photo Production</h3>
+        <p>Modular steel floors, Strand theater lighting, and 3-phase 400-amp service on every floor. Rig and route cable without cutting drywall; reset between productions without permits.</p>
+      </div>
+
+      <div class="card">
+        <div class="n">04</div>
+        <h3>Conferences &amp; Summits</h3>
+        <p>An elevated glass conference room, breakout offices, and an atrium-lit gathering floor — four programmable floors connected by a glass-walled elevator that runs end-to-end.</p>
+      </div>
+
+      <div class="card">
+        <div class="n">05</div>
+        <h3>Private Celebrations</h3>
+        <p>Sliding glass walls open onto porcelain terraces with treetop and ocean views. Dinners, receptions, and after-parties move from interior floor to open-air deck without a load-out.</p>
+      </div>
+
+      <div class="card">
+        <div class="n">06</div>
+        <h3>Corporate &amp; Pop-Up</h3>
+        <p>Steelcase glass offices, separate electrical meters per floor, and flexible terms make the building a turnkey HQ for a quarter or a season-long retail residency on the ground floor.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CAPABILITIES (3-video triangle) ─── -->
+<section class="capabilities" id="capabilities">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Capabilities</div>
+        <h2>The infrastructure most productions build, <b>ready to deploy.</b></h2>
+      </div>
+      <p>Easily the closest provider for any west-side productions or brand activations. We specialize in executing productions based on three pillars: <b>Brand Activation</b>, <b>Content Solutions</b>, and <b>Creative Services</b>.</p>
+    </div>
+    <div class="triangle">
+      <div class="tile top">
+        <video src="cap_brand_activation.mp4" poster="cap_brand_activation_poster.jpg" autoplay muted loop playsinline></video>
+        <div class="label">Brand Activation</div>
+      </div>
+      <div class="row">
+        <div class="tile">
+          <video src="cap_content_solutions.mp4" poster="cap_content_solutions_poster.jpg" autoplay muted loop playsinline></video>
+          <div class="label">Content Solutions</div>
+        </div>
+        <div class="tile">
+          <video src="cap_creative_services.mp4" poster="cap_creative_services_poster.jpg" autoplay muted loop playsinline></video>
+          <div class="label">Creative Services</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TAKE THE LIFT ─── -->
+<section class="lift" id="floors">
+  <div class="head">
+    <div>
+      <div class="eyebrow">Four floors, four worlds</div>
+      <h2>Take the Lift.</h2>
+    </div>
+    <p>Our premiere first-floor event space acts as a front-of-house creative activation center. Above are three consecutive floors of commercial infrastructure.</p>
+  </div>
+
+  <div class="selectlabel">Select a floor</div>
+
+  <div class="tabs" role="tablist">
+    <button class="active" data-tab="f01" role="tab"><span class="n">01</span> Gallery</button>
+    <button data-tab="f02" role="tab"><span class="n">02</span> Atrium</button>
+    <button data-tab="f03" role="tab"><span class="n">03</span> Offices</button>
+    <button data-tab="f04" role="tab"><span class="n">04</span> Penthouse</button>
+  </div>
+
+  <div class="panels">
+
+    <div class="panel active" id="f01" role="tabpanel">
+      <img class="bg" src="floor1_gallery.jpg" alt="1217 Second Street — Ground Floor Gallery">
+      <div class="info">
+        <div class="sub">Ground Floor · The Gallery</div>
+        <h3>Glass-front <b>activation floor.</b></h3>
+        <div class="stats">
+          <div class="s"><div class="v">6,475</div><div class="k">Square Feet</div></div>
+          <div class="s"><div class="v">10 – 16.5'</div><div class="k">Ceilings</div></div>
+          <div class="s"><div class="v">14'</div><div class="k">Glass Walls</div></div>
+        </div>
+        <ul>
+          <li>Fourteen-foot glass façade with Promenade visibility plus electronic privacy shades</li>
+          <li>Programmable brand lighting, raised VIP / DJ platform, drop-down cinema screen</li>
+          <li>Bulthaup B3 stainless kitchen and a loading dock sized for production rolls</li>
+        </ul>
+        <a class="reserve" href="#inquiry">Reserve this floor <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="panel" id="f02" role="tabpanel">
+      <img class="bg" src="floor2_atrium.jpg" alt="1217 Second Street — Atrium">
+      <div class="info">
+        <div class="sub">Second Floor · The Atrium</div>
+        <h3>A daylight column <b>at the center.</b></h3>
+        <div class="stats">
+          <div class="s"><div class="v">7,111</div><div class="k">Square Feet</div></div>
+          <div class="s"><div class="v">9 – 12.5'</div><div class="k">Ceilings</div></div>
+          <div class="s"><div class="v">1,100</div><div class="k">SF Atrium</div></div>
+        </div>
+        <ul>
+          <li>Porcelain-decked atrium ringed by sliding glass walls and a custom Corian bench</li>
+          <li>Three balconies with treetop views and full theater lighting effects</li>
+          <li>Enclosed elevated glass conference room overlooking the floor</li>
+        </ul>
+        <a class="reserve" href="#inquiry">Reserve this floor <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="panel" id="f03" role="tabpanel">
+      <img class="bg" src="floor3_offices.jpg" alt="1217 Second Street — Third Floor Offices">
+      <div class="info">
+        <div class="sub">Third Floor · The Offices</div>
+        <h3>Production offices with <b>ocean at the back.</b></h3>
+        <div class="stats">
+          <div class="s"><div class="v">6,341</div><div class="k">Square Feet</div></div>
+          <div class="s"><div class="v">9 – 13.5'</div><div class="k">Ceilings</div></div>
+          <div class="s"><div class="v">Ocean</div><div class="k">Deck Views</div></div>
+        </div>
+        <ul>
+          <li>Three Steelcase glass-enclosed offices plus an executive suite with city and mountain views</li>
+          <li>Sliding glass walls across the entire façade opening to a porcelain ocean-view deck</li>
+          <li>Balcony over the atrium courtyard with glass walls pulling in daylight</li>
+        </ul>
+        <a class="reserve" href="#inquiry">Reserve this floor <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="panel" id="f04" role="tabpanel">
+      <img class="bg" src="floor4_penthouse.jpg" alt="1217 Second Street — Fourth Floor Penthouse">
+      <div class="info">
+        <div class="sub">Fourth Floor · The Penthouse</div>
+        <h3>Top floor, <b>open to the sky.</b></h3>
+        <div class="stats">
+          <div class="s"><div class="v">5,120</div><div class="k">Square Feet</div></div>
+          <div class="s"><div class="v">10 – 13.5'</div><div class="k">Ceilings</div></div>
+          <div class="s"><div class="v">2</div><div class="k">Exec Suites</div></div>
+        </div>
+        <ul>
+          <li>Sliding glass walls across the façade opening to a porcelain deck with sweeping ocean views</li>
+          <li>Two private executive suites — one with city and mountain views, one with ocean views</li>
+          <li>Atrium-side balcony with glass walls and abundant natural light</li>
+        </ul>
+        <a class="reserve" href="#inquiry">Reserve this floor <span class="arr">→</span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── THE ADDRESS (with Zoning text box + promenade video right) ─── -->
+<section class="address">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">The Address</div>
+      <h2>Steps from the ocean, <b>in the heart of the west-side.</b></h2>
+    </div>
+    <div class="grid">
+      <div class="copy">
+        <p>1217 Second Street sits inside Santa Monica's BC Promenade District — the most-walked retail corridor on the Westside — with the sand one block away and freeway access minutes from the door.</p>
+        <div class="addr-stats">
+          <div class="s"><span>To the Santa Monica sand and Pier</span><strong>1 block</strong></div>
+          <div class="s"><span>To Interstate 10 and PCH</span><strong>2 min</strong></div>
+          <div class="s"><span>Free parking at the adjacent city garage</span><strong>90 min</strong></div>
+          <div class="s"><span>On-site valet spots in the private basement garage</span><strong>20</strong></div>
+        </div>
+        <div class="zoning-box">
+          <div class="z-eyebrow">Zoning advantage</div>
+          <h3>A district <b>built to host.</b></h3>
+          <p>The BC Promenade District allows hotel, restaurant, bar, and members-club use without a Conditional Use Permit. Updated city ordinances have relaxed rules on alcohol and food service, restaurant size, commercial conversion, and signage.</p>
+          <p>Parking is not required in the district — and the building brings its own. For production, the regulatory load is unusually light: permits clear faster, food and alcohol service stand up cleanly, and sponsor signage carries less friction than the rest of the Westside.</p>
+          <a class="deck-link" href="#inquiry">Request the full deck <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="vid">
+        <video src="promenade.mp4" poster="promenade_poster.jpg" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WALK THROUGH IT (gallery) ─── -->
+<section class="walk">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">The space</div>
+      <h2>Walk through it.</h2>
+    </div>
+    <div class="bento">
+      <div class="cell a"><img src="floor2_atrium.jpg" alt="Atrium view"></div>
+      <div class="cell b"><img src="floor1_gallery.jpg" alt="First floor"></div>
+      <div class="cell c"><img src="bento_4th_deck.jpg" alt="Fourth floor deck"></div>
+      <div class="cell d"><img src="floor3_offices.jpg" alt="Third floor back"></div>
+      <div class="cell e"><img src="floor4_penthouse.jpg" alt="Sliding doors penthouse"></div>
+      <div class="cell f"><img src="bento_first_floor.jpg" alt="First floor open"></div>
+      <div class="cell g"><img src="bento_atrium_view.jpg" alt="Looking into the atrium"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE SPECS (6-item infrastructure grid, moved here per Sean) ─── -->
+<section class="infra" id="specs">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow">The Specs</div>
+        <h2>Built-in systems, <b>floor by floor.</b></h2>
+      </div>
+      <p>The infrastructure already installed in the building — engineered, mapped, and powered for production-day load.</p>
+    </div>
+    <div class="grid">
+
+      <div class="item">
+        <div class="n">01</div>
+        <h3>Modular Steel Flooring</h3>
+        <p>Floors 2, 3, and 4 route cable and rigging beneath the surface. Reconfigure between productions without construction or a permit cycle.</p>
+      </div>
+
+      <div class="item">
+        <div class="n">02</div>
+        <h3>Theater Lighting</h3>
+        <p>Programmable Strand theater lighting system with LED throughout, mapped to brand color spaces and recallable cue by cue.</p>
+      </div>
+
+      <div class="item">
+        <div class="n">03</div>
+        <h3>3-Phase 400-Amp Power</h3>
+        <p>Heavy power on every floor with separate electrical meters per floor. LED, projection rigs, and lighting run simultaneously without contention.</p>
+      </div>
+
+      <div class="item">
+        <div class="n">04</div>
+        <h3>Glass-Walled Elevator</h3>
+        <p>Atrium-side glass elevator connects all four floors plus the basement loading dock — passenger flow and freight on the same shaft.</p>
+      </div>
+
+      <div class="item">
+        <div class="n">05</div>
+        <h3>On-Site Parking</h3>
+        <p>Private basement garage with 12 self-park or 20 valet spots, plus direct loading-dock access — a rarity in downtown Santa Monica.</p>
+      </div>
+
+      <div class="item">
+        <div class="n">06</div>
+        <h3>Bulthaup Kitchen</h3>
+        <p>Built-in Bulthaup B3 stainless kitchen on the ground floor for catering, hospitality, and on-set production meals.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── GOOD TO KNOW (FAQ) ─── -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="eyebrow">Good to know</div>
+    <h2>Questions, <b>answered.</b></h2>
+
+    <details>
+      <summary>Can I rent a single floor, or only the full building?</summary>
+      <div class="a">Both. Each of the four floors operates as a self-contained venue with its own light, ceiling height, and terrace. Book one floor for an intimate evening or take all 34,000 SF for a multi-day production. The inquiry form below asks for scope so we can propose the right footprint.</div>
+    </details>
+
+    <details>
+      <summary>What kinds of productions does the space host?</summary>
+      <div class="a">Brand activations, product launches and premieres, film and photo shoots, conferences and summits, private dinners and celebrations, pop-up retail residencies, and turnkey corporate offices. The programmable lighting, modular floors, and built-in kitchen make the switch between formats fast.</div>
+    </details>
+
+    <details>
+      <summary>Is there parking and loading access?</summary>
+      <div class="a">Yes. A private basement garage holds 12 self-park or 20 valet spots with direct loading-dock access. The adjacent city garage offers free parking for the first 90 minutes. Parking is not required in the Promenade District, so logistics are unusually simple for downtown Santa Monica.</div>
+    </details>
+
+    <details>
+      <summary>Can we serve food and alcohol?</summary>
+      <div class="a">Yes. The BC Promenade District allows restaurant, bar, and members-club use without a Conditional Use Permit, and recent ordinances have relaxed rules around food and alcohol service. The ground floor includes a Bulthaup B3 kitchen for catering and hospitality. We'll walk you through permitting for the specific event.</div>
+    </details>
+
+    <details>
+      <summary>What production infrastructure is built in?</summary>
+      <div class="a">Programmable Strand theater lighting with LED throughout, 3-phase 400-amp power with separate meters per floor, modular steel flooring on floors 2 – 4 for cable routing and rigging, a drop-down cinema screen, a raised VIP / DJ platform, a glass-walled elevator, and a large loading dock. Most productions arrive with far less to bring in than they expect.</div>
+    </details>
+
+    <details>
+      <summary>Does the production team come with the venue?</summary>
+      <div class="a">Both options are available. The in-house production team handles creative direction, lighting design, fabrications, projection, LED signage, immersive content, and video recording services — with content-bundled packages for any project they produce. Venue-only bookings are supported. The integrated package is generally the better margin on multi-day or multi-deliverable projects. Production support can be requested for jobs outside of our venue system; we support the entire west side, filling a much-needed gap in the studio space just a block from 3rd St. Promenade.</div>
+    </details>
+
+    <details>
+      <summary>How do I get pricing and availability?</summary>
+      <div class="a">Send the details in the inquiry form below and you'll receive availability, a tailored quote, and the full floor-plan deck. Most inquiries hear back within one business day. We can send back an estimate based on exactly what you need.</div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ─── LOCK IN PRODUCTION (inquiry) ─── -->
+<section class="inquiry" id="inquiry">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Lock in Production</div>
+      <h2>Tell us about <b>your production.</b></h2>
+      <div class="lede">Share your dates and scope and we'll come back with availability, pricing, and the full floor-plan deck — usually within one business day. Private walkthroughs available by appointment.</div>
+      <div class="contact">
+        <div><div class="k">Visit</div><div class="v">1217 Second Street, Santa Monica, CA 90401</div></div>
+        <div><div class="k">Email</div><div class="v">leasing@1217secondstreet.com</div></div>
+        <div><div class="k">Call</div><div class="v">(310) 555-0000</div></div>
+      </div>
+    </div>
+    <form action="https://formsubmit.co/leasing@57windward.com" method="POST">
+      <input type="hidden" name="_subject" value="New 1217 Production Services inquiry">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://zeitg3ist.github.io/57windward-production-services/?submitted=1">
+      <input type="text" name="_honey" style="display:none">
+      <div><label>Name</label><input type="text" name="name" required placeholder="Your name"></div>
+      <div><label>Company</label><input type="text" name="company" placeholder="Brand / agency"></div>
+      <div><label>Email</label><input type="email" name="email" required placeholder="you@company.com"></div>
+      <div><label>Phone</label><input type="tel" name="phone" placeholder="(000) 000-0000"></div>
+      <div>
+        <label>Project Type</label>
+        <select name="type" required>
+          <option value="">Select…</option>
+          <option>Brand activation</option>
+          <option>Product launch / premiere</option>
+          <option>Film / photo production</option>
+          <option>Conference / summit</option>
+          <option>Private celebration</option>
+          <option>Pop-up retail</option>
+          <option>Corporate / office</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div><label>Preferred Date</label><input type="date" name="date"></div>
+      <div>
+        <label>Floors Needed</label>
+        <select name="floors">
+          <option value="">Select…</option>
+          <option>Ground floor (Gallery)</option>
+          <option>Second floor (Atrium)</option>
+          <option>Third floor (Offices)</option>
+          <option>Fourth floor (Penthouse)</option>
+          <option>Full building (all four)</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div><label>Estimated Guests</label><input type="number" name="guests" min="1" placeholder="e.g. 150"></div>
+      <div class="full">
+        <label>Tell us about it</label>
+        <textarea name="notes" placeholder="Vision, timing, scope, deliverables — anything we should know."></textarea>
+      </div>
+      <button type="submit">Lock in Production <span class="arr">→</span></button>
+      <div class="disclaim">By submitting you agree to be contacted about your project. We never share your details.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="wrap">
+    <div class="col lead">
+      <div class="brand">1217 Production Services<small>From 1217 Second Street · Santa Monica</small></div>
+      <p>A 34,000 SF commercial production facility in Santa Monica's BC Promenade District — one block from the ocean. Sister stage at 57 Windward Avenue, Venice Beach.</p>
+      <a class="sister" href="#">57 Windward Ave., Venice Beach <span class="arr">→</span></a>
+    </div>
+    <div class="col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#becomes">What it becomes</a></li>
+        <li><a href="#floors">Floors</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#specs">Specs</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Inquire</h4>
+      <ul>
+        <li><a href="#inquiry">Lock in Production</a></li>
+        <li>leasing@1217secondstreet.com</li>
+        <li>(310) 555-0000</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Visit</h4>
+      <ul>
+        <li>1217 2nd St</li>
+        <li>Santa Monica, CA 90401</li>
+        <li>57 Windward Ave., Venice</li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <div>© 2026 · 1217 Production Services</div>
+    <div>Santa Monica, CA · Venice Beach, CA</div>
+  </div>
+</footer>
+
+<script>
+// Tabbed floor selector
+(function(){
+  var tabs = document.querySelectorAll('.tabs button');
+  var panels = document.querySelectorAll('.panel');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var id = btn.getAttribute('data-tab');
+      tabs.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
